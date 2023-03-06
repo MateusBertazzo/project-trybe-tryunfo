@@ -23,7 +23,45 @@ class App extends React.Component {
 
     this.setState({
       [name]: value,
-    });
+    }, this.validateInputs);
+  };
+
+  validateInputs = () => {
+    const {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+    } = this.state;
+
+    const MIN_VALUE = 0;
+    const MAX_VALUE = 90;
+    const SUM_AMOUNT = 210;
+    // NUMBER Constructor (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/Number)
+    const SUM = Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3);
+
+    if ((cardName.length
+      && cardDescription.length
+      && cardImage.length
+      && cardRare.length !== 0)
+      && cardAttr1 <= MAX_VALUE
+      && cardAttr2 <= MAX_VALUE
+      && cardAttr3 <= MAX_VALUE
+      && cardAttr1 >= MIN_VALUE
+      && cardAttr2 >= MIN_VALUE
+      && cardAttr3 >= MIN_VALUE
+      && SUM <= SUM_AMOUNT) {
+      this.setState({
+        isSaveButtonDisabled: false,
+      });
+    } else {
+      this.setState({
+        isSaveButtonDisabled: true,
+      });
+    }
   };
 
   render() {
