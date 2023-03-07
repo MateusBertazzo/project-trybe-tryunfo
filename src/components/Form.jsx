@@ -107,6 +107,8 @@ class Form extends Component {
           </select>
         </label>
 
+        {/* Aqui Uso o metodo de renderização condicional que os summers brabissimos ensinaram. */}
+
         {hasTrunfo
           ? (
             <h2 data-testid="trunfo-input">
