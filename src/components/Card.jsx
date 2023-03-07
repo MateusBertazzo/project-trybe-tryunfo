@@ -22,7 +22,7 @@ class Card extends Component {
         <p data-testid="attr2-card">{ cardAttr2 }</p>
         <p data-testid="attr3-card">{ cardAttr3 }</p>
         <h3 data-testid="rare-card">{ cardRare }</h3>
-        { cardTrunfo && <p data-testid="trunfo-card">Super Trunfo</p> }
+        { cardTrunfo === true && <p data-testid="trunfo-card">Super Trunfo</p> }
       </div>
     );
   }
