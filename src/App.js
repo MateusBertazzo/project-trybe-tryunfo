@@ -106,6 +106,14 @@ class App extends React.Component {
     });
   };
 
+  deleteCard = (indexRemove) => {
+    const { cardArraySave } = this.state;
+    const newArrayCard = cardArraySave.filter((_card, index) => (index !== indexRemove));
+    this.setState({
+      cardArraySave: newArrayCard,
+    });
+  };
+
   render() {
     const {
       cardName,
@@ -157,18 +165,29 @@ class App extends React.Component {
 
         <div>
           <h1>Lista de Cartas</h1>
-          { cardArraySave.map((card) => (
-            <Card
-              key={ card.cardName }
-              cardName={ card.cardName }
-              cardDescription={ card.cardDescription }
-              cardAttr1={ card.cardAttr1 }
-              cardAttr2={ card.cardAttr2 }
-              cardAttr3={ card.cardAttr3 }
-              cardImage={ card.cardImage }
-              cardRare={ card.cardRare }
-              cardTrunfo={ card.cardTrunfo }
-            />
+          { cardArraySave.map((card, index) => (
+            <div key={ index }>
+              <Card
+                key={ card.cardName }
+                cardName={ card.cardName }
+                cardDescription={ card.cardDescription }
+                cardAttr1={ card.cardAttr1 }
+                cardAttr2={ card.cardAttr2 }
+                cardAttr3={ card.cardAttr3 }
+                cardImage={ card.cardImage }
+                cardRare={ card.cardRare }
+                cardTrunfo={ card.cardTrunfo }
+              />
+              <button
+                data-testid="delete-button"
+                type="button"
+                onClick={ () => this.deleteCard(index) }
+              >
+                Excluir
+
+              </button>
+            </div>
+
           )) }
         </div>
       </div>
