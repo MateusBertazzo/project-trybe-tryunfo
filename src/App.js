@@ -14,6 +14,7 @@ class App extends React.Component {
     cardTrunfo: false,
     // hasTrunfo: false,
     isSaveButtonDisabled: true,
+    cardArraySave: [],
   };
 
   // Function Generica do Ander( brabissimo!! )
@@ -64,6 +65,40 @@ class App extends React.Component {
     }
   };
 
+  onSaveButtonClick = () => {
+    const {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardArraySave,
+    } = this.state;
+
+    const newObject = {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+    };
+
+    this.setState({
+      cardArraySave: [...cardArraySave, newObject],
+      cardName: '',
+      cardDescription: '',
+      cardAttr1: '0',
+      cardAttr2: '0',
+      cardAttr3: '0',
+      cardImage: '',
+      cardRare: 'normal',
+    });
+  };
+
   render() {
     const {
       cardName,
@@ -93,7 +128,7 @@ class App extends React.Component {
             // hasTrunfo={ hasTrunfo }
             isSaveButtonDisabled={ isSaveButtonDisabled }
             onInputChange={ this.onInputChange }
-            // onSaveButtonClick={ this.onSaveButtonClick }
+            onSaveButtonClick={ this.onSaveButtonClick }
           />
         </div>
 
